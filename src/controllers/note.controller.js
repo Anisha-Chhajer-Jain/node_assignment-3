@@ -67,64 +67,64 @@ const multipleNotes = async (req, res) => {
 };
 
 
-// //// Get all notes
-// const getAllNotes = async (req, res) => {
-//   try {
-//     const notes = await Note.find();
+//// Get all notes
+const getAllNotes = async (req, res) => {
+  try {
+    const notes = await Note.find();
 
-//     res.status(200).json({
-//       success: true,
-//       message: "Notes fetched successfully",
-//       data: notes
-//     });
+    res.status(200).json({
+      success: true,
+      message: "Notes fetched successfully",
+      data: notes
+    });
 
-//   } catch (err) {
-//     res.status(500).json({
-//       success: false,
-//       message: "Server error",
-//       data: null
-//     });
-//   }
-// };
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+      data: null
+    });
+  }
+};
 
 
-// //// Get note by ID
-// const getNotesById = async (req, res) => {
-//   try {
-//     const noteId = req.params.id;
+//// Get note by ID
+const getNotesById = async (req, res) => {
+  try {
+    const noteId = req.params.id;
 
-//     if (!isValidId(noteId)) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "Invalid note ID",
-//         data: null
-//       });
-//     }
+    if (!isValidId(noteId)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid note ID",
+        data: null
+      });
+    }
 
-//     const note = await Note.findById(noteId);
+    const note = await Note.findById(noteId);
 
-//     if (!note) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Note not found",
-//         data: null
-//       });
-//     }
+    if (!note) {
+      return res.status(404).json({
+        success: false,
+        message: "Note not found",
+        data: null
+      });
+    }
 
-//     res.status(200).json({
-//       success: true,
-//       message: "Note fetched successfully",
-//       data: note
-//     });
+    res.status(200).json({
+      success: true,
+      message: "Note fetched successfully",
+      data: note
+    });
 
-//   } catch (err) {
-//     res.status(500).json({
-//       success: false,
-//       message: "Server error",
-//       data: null
-//     });
-//   }
-// };
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+      data: null
+    });
+  }
+};
 
 // //// PUT — Replace note completely
 // const UpdateById = async (req, res) => {
