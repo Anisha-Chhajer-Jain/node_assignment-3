@@ -1,7 +1,4 @@
-/**
- * Author: Anisha Chhajer
- * Assignment 3: State Management API
- */
+
 
 require('dotenv').config();
 const app = require('./app.js');
@@ -21,8 +18,8 @@ const serverStart = async () => {
     try {
         await connectDB(MONGO_URI);
         console.log("MongoDB connected successfully");
-
-    } catch (err) {
+    } 
+    catch (err) {
         console.log("MongoDB connection failed:", err);
         process.exit(1);
     }
