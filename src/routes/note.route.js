@@ -1,8 +1,3 @@
-/**
- * Author: Anisha Chhajer
- * Note Routes - Assignment 3
- */
-
 const express = require("express");
 const router = express.Router();
 
