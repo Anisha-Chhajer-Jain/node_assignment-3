@@ -343,61 +343,61 @@ const searchAll = async (req, res) => {
   }
 };
 
-// const filterSort = async (req, res) => {
-//   try {
-//     const { category, sortBy = "createdAt", order = "desc" } = req.query;
+const filterSort = async (req, res) => {
+  try {
+    const { category, sortBy = "createdAt", order = "desc" } = req.query;
 
-//     const filter = {};
+    const filter = {};
 
-//     if (category) filter.category = category;
+    if (category) filter.category = category;
 
-//     const notes = await Note.find(filter).sort({
-//       [sortBy]: order === "asc" ? 1 : -1,
-//     });
+    const notes = await Note.find(filter).sort({
+      [sortBy]: order === "asc" ? 1 : -1,
+    });
 
-//     res.status(200).json(notes);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+    res.status(200).json(notes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-// const filterPaginate = async (req, res) => {
-//   try {
-//     const { category, page = 1, limit = 5 } = req.query;
+const filterPaginate = async (req, res) => {
+  try {
+    const { category, page = 1, limit = 5 } = req.query;
 
-//     const filter = {};
+    const filter = {};
 
-//     if (category) filter.category = category;
+    if (category) filter.category = category;
 
-//     const notes = await Note.find(filter)
-//       .skip((page - 1) * limit)
-//       .limit(Number(limit));
+    const notes = await Note.find(filter)
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
 
-//     res.status(200).json(notes);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+    res.status(200).json(notes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-// const sortPaginate = async (req, res) => {
-//   try {
-//     const {
-//       sortBy = "createdAt",
-//       order = "desc",
-//       page = 1,
-//       limit = 5,
-//     } = req.query;
+const sortPaginate = async (req, res) => {
+  try {
+    const {
+      sortBy = "createdAt",
+      order = "desc",
+      page = 1,
+      limit = 5,
+    } = req.query;
 
-//     const notes = await Note.find()
-//       .sort({ [sortBy]: order === "asc" ? 1 : -1 })
-//       .skip((page - 1) * limit)
-//       .limit(Number(limit));
+    const notes = await Note.find()
+      .sort({ [sortBy]: order === "asc" ? 1 : -1 })
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
 
-//     res.status(200).json(notes);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+    res.status(200).json(notes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 
 // const searchFilter = async (req, res) => {
