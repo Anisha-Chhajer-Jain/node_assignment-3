@@ -453,74 +453,74 @@ const searchSortPaginate = async (req, res) => {
   }
 };
 
-// const filterSortPaginate = async (req, res) => {
-//   try {
-//     const {
-//       category,
-//       sortBy = "createdAt",
-//       order = "desc",
-//       page = 1,
-//       limit = 5,
-//     } = req.query;
+const filterSortPaginate = async (req, res) => {
+  try {
+    const {
+      category,
+      sortBy = "createdAt",
+      order = "desc",
+      page = 1,
+      limit = 5,
+    } = req.query;
 
-//     const filter = {};
+    const filter = {};
 
-//     if (category) filter.category = category;
+    if (category) filter.category = category;
 
-//     const notes = await Note.find(filter)
-//       .sort({ [sortBy]: order === "asc" ? 1 : -1 })
-//       .skip((page - 1) * limit)
-//       .limit(Number(limit));
+    const notes = await Note.find(filter)
+      .sort({ [sortBy]: order === "asc" ? 1 : -1 })
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
 
-//     res.status(200).json(notes);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+    res.status(200).json(notes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-// const queryNotes = async (req, res) => {
-//   try {
-//     const {
-//       keyword,
-//       category,
-//       priority,
-//       sortBy = "createdAt",
-//       order = "desc",
-//       page = 1,
-//       limit = 10,
-//     } = req.query;
+const queryNotes = async (req, res) => {
+  try {
+    const {
+      keyword,
+      category,
+      priority,
+      sortBy = "createdAt",
+      order = "desc",
+      page = 1,
+      limit = 10,
+    } = req.query;
 
-//     const filter = {};
+    const filter = {};
 
-//     if (category) filter.category = category;
+    if (category) filter.category = category;
 
-//     if (priority) filter.priority = priority;
+    if (priority) filter.priority = priority;
 
-//     if (keyword) {
-//       filter.$or = [
-//         { title: { $regex: keyword, $options: "i" } },
-//         { content: { $regex: keyword, $options: "i" } },
-//       ];
-//     }
+    if (keyword) {
+      filter.$or = [
+        { title: { $regex: keyword, $options: "i" } },
+        { content: { $regex: keyword, $options: "i" } },
+      ];
+    }
 
-//     const notes = await Note.find(filter)
-//       .sort({ [sortBy]: order === "asc" ? 1 : -1 })
-//       .skip((page - 1) * limit)
-//       .limit(Number(limit));
+    const notes = await Note.find(filter)
+      .sort({ [sortBy]: order === "asc" ? 1 : -1 })
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
 
-//     const total = await Note.countDocuments(filter);
+    const total = await Note.countDocuments(filter);
 
-//     res.status(200).json({
-//       total,
-//       page: Number(page),
-//       limit: Number(limit),
-//       totalPages: Math.ceil(total / limit),
-//       notes,
-//     });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+    res.status(200).json({
+      total,
+      page: Number(page),
+      limit: Number(limit),
+      totalPages: Math.ceil(total / limit),
+      notes,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 module.exports = {
   createNote: createNote,
