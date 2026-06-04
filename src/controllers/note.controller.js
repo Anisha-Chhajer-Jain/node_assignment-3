@@ -227,121 +227,121 @@ const UpdateFieldId = async (req, res) => {
   }
 };
 
-// //// Delete note by ID
-// const deleteById = async (req, res) => {
-//   try {
-//     const noteId = req.params.id;
+//// Delete note by ID
+const deleteById = async (req, res) => {
+  try {
+    const noteId = req.params.id;
 
-//     if (!isValidId(noteId)) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "Invalid note ID",
-//         data: null
-//       });
-//     }
+    if (!isValidId(noteId)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid note ID",
+        data: null
+      });
+    }
 
-//     const deletedNote = await Note.findByIdAndDelete(noteId);
+    const deletedNote = await Note.findByIdAndDelete(noteId);
 
-//     if (!deletedNote) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Note not found",
-//         data: null
-//       });
-//     }
+    if (!deletedNote) {
+      return res.status(404).json({
+        success: false,
+        message: "Note not found",
+        data: null
+      });
+    }
 
-//     res.status(200).json({
-//       success: true,
-//       message: "Note deleted successfully",
-//       data: null
-//     });
+    res.status(200).json({
+      success: true,
+      message: "Note deleted successfully",
+      data: null
+    });
 
-//   } catch (err) {
-//     res.status(500).json({
-//       success: false,
-//       message: "Server error",
-//       data: null
-//     });
-//   }
-// };
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+      data: null
+    });
+  }
+};
 
-// //// Delete multiple notes
-// const deleteMulti = async (req, res) => {
-//   try {
-//     const { ids } = req.body;
+//// Delete multiple notes
+const deleteMulti = async (req, res) => {
+  try {
+    const { ids } = req.body;
 
-//     if (!ids || !Array.isArray(ids) || ids.length === 0) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "IDs array is required and cannot be empty",
-//         data: null
-//       });
-//     }
+    if (!ids || !Array.isArray(ids) || ids.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "IDs array is required and cannot be empty",
+        data: null
+      });
+    }
 
-//     const result = await Note.deleteMany({
-//       _id: { $in: ids }
-//     });
+    const result = await Note.deleteMany({
+      _id: { $in: ids }
+    });
 
-//     res.status(200).json({
-//       success: true,
-//       message: `${result.deletedCount} notes deleted successfully`,
-//       data: null
-//     });
+    res.status(200).json({
+      success: true,
+      message: `${result.deletedCount} notes deleted successfully`,
+      data: null
+    });
 
-//   } catch (err) {
-//     res.status(500).json({
-//       success: false,
-//       message: "Server error",
-//       data: null
-//     });
-//   }
-// };
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+      data: null
+    });
+  }
+};
 
-// const searchTitle = async (req, res) => {
-//   try {
-//     const { keyword } = req.query;
+const searchTitle = async (req, res) => {
+  try {
+    const { keyword } = req.query;
 
-//     const notes = await Note.find({
-//       title: { $regex: keyword, $options: "i" },
-//     });
+    const notes = await Note.find({
+      title: { $regex: keyword, $options: "i" },
+    });
 
-//     res.status(200).json(notes);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+    res.status(200).json(notes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-// const searchContent = async (req, res) => {
-//   try {
-//     const { keyword } = req.query;
+const searchContent = async (req, res) => {
+  try {
+    const { keyword } = req.query;
 
-//     const notes = await Note.find({
-//       content: { $regex: keyword, $options: "i" },
-//     });
+    const notes = await Note.find({
+      content: { $regex: keyword, $options: "i" },
+    });
 
-//     res.status(200).json(notes);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+    res.status(200).json(notes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 
-// const searchAll = async (req, res) => {
-//   try {
-//     const { keyword } = req.query;
+const searchAll = async (req, res) => {
+  try {
+    const { keyword } = req.query;
 
-//     const notes = await Note.find({
-//       $or: [
-//         { title: { $regex: keyword, $options: "i" } },
-//         { content: { $regex: keyword, $options: "i" } },
-//       ],
-//     });
+    const notes = await Note.find({
+      $or: [
+        { title: { $regex: keyword, $options: "i" } },
+        { content: { $regex: keyword, $options: "i" } },
+      ],
+    });
 
-//     res.status(200).json(notes);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+    res.status(200).json(notes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 // const filterSort = async (req, res) => {
 //   try {
