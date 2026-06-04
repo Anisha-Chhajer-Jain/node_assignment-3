@@ -1,7 +1,3 @@
-/**
- * Author: Anisha Chhajer
- * Note Controller - Assignment 3
- */
 
 const mongoose = require('mongoose');
 const Note = require('../models/note.model.js');
